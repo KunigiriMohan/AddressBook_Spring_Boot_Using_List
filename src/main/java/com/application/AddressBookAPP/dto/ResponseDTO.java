@@ -1,6 +1,10 @@
 package com.application.AddressBookAPP.dto;
 
-public class ResponseDTO {
+import lombok.Data;
+/**
+ * @Data : Using Lombok to auto generate Getters and Setters
+ */
+public @Data class ResponseDTO {
     private String message;
     private Object contactDTO;
     
@@ -14,25 +18,4 @@ public class ResponseDTO {
         this.contactDTO = contactDTO;
     }
 
-    /**
-     * Getters and Setters
-     */
-    public String getMessage() {
-        return message;
-    }
-
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-
-    public Object getContactDTO() {
-        return contactDTO;
-    }
-
-
-    public void setContactDTO(Object contactDTO) {
-        this.contactDTO = contactDTO;
-    }
 }
