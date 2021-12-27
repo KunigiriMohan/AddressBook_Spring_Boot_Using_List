@@ -2,6 +2,8 @@ package com.application.AddressBookAPP.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.application.AddressBookAPP.dto.ContactDTO;
 import com.application.AddressBookAPP.dto.ResponseDTO;
 import com.application.AddressBookAPP.model.ContactData;
@@ -66,7 +68,7 @@ public class AddressBookController {
      * @return : ResponseEntity of Contact data
      */
     @PostMapping("/create")
-    public ResponseEntity<ResponseDTO> addingContact(@RequestBody ContactDTO contactDTO){
+    public ResponseEntity<ResponseDTO> addingContact(@Valid @RequestBody ContactDTO contactDTO){
         ContactData contactData = addressBookInterface.createContactData(contactDTO);
         ResponseDTO responseDTO = new ResponseDTO("Create Call Success : ", contactData);
         return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
@@ -78,7 +80,7 @@ public class AddressBookController {
      * @return : ResponseEntity of Updated Contact
      */
     @PutMapping("/update/{contactID}")
-    public ResponseEntity<ResponseDTO> updateContact(@RequestBody ContactDTO contactDTO,@PathVariable("contactID") int contactID){
+    public ResponseEntity<ResponseDTO> updateContact(@Valid @RequestBody ContactDTO contactDTO,@PathVariable("contactID") int contactID){
         ContactData contactData = addressBookInterface.updateContactData(contactID,contactDTO);
         ResponseDTO responseDTO = new ResponseDTO("Update Call Success : ", contactData);
         return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
