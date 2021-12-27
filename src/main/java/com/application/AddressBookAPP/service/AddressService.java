@@ -5,6 +5,7 @@ import java.util.List;
 import com.application.AddressBookAPP.dto.ContactDTO;
 import com.application.AddressBookAPP.model.ContactData;
 import org.springframework.stereotype.Service;
+import com.application.AddressBookAPP.exception.ContactNotFoundEXception;
 
 /**
 * @Service : creating service layer
@@ -30,7 +31,7 @@ public class AddressService implements AddressBookInterface{
      */
     @Override
     public ContactData getContactDataById(int contactID) {
-        return contactDatas.get(contactID);
+        return contactDatas.stream().filter(contactData -> contactData.getID() == contactID).findFirst().orElseThrow(() -> new ContactNotFoundEXception("Contact not found"));
     }
 
     /**
