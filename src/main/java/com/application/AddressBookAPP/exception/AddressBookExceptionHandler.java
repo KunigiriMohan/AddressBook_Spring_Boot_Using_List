@@ -29,5 +29,16 @@ public class AddressBookExceptionHandler {
         List<String> errMsg = errorList.stream().map(addressData->addressData.getDefaultMessage()).collect(Collectors.toList());
         ResponseDTO responseDTO = new ResponseDTO("Exception while fetching REST Request", errMsg);
         return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.BAD_REQUEST);
-    }    
+    }
+    
+    /**
+     * Method to Handle ContactNotFoundException
+     * @param exception
+     * @return : ResponseEntity of Exception when employee ID not find
+     */
+    @ExceptionHandler(ContactNotFoundEXception.class)
+    public ResponseEntity<ResponseDTO> contactNotFoundException(ContactNotFoundEXception exception){
+        ResponseDTO responseDTO = new ResponseDTO("Exception while processing REST Request", exception.getMessage());
+        return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.BAD_REQUEST);
+    }
 }
