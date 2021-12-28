@@ -6,6 +6,8 @@ import lombok.ToString;
 
 /**
  * @Data : Using Lombok to auto Generate Getters and Setters
+ * @Pattern : Validating Variable using Regex
+ * @NotNull : Show error message when variable is not Defined
  */
 public @ToString class  ContactDTO {
 
