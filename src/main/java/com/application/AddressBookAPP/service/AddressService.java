@@ -31,7 +31,7 @@ public class AddressService implements AddressBookInterface{
      */
     @Override
     public ContactData getContactDataById(int contactID) {
-        return contactDatas.stream().filter(contactData -> contactData.getID() == contactID).findFirst().orElseThrow(() -> new ContactNotFoundEXception("Contact not found"));
+        return contactDatas.stream().filter(contactData -> contactData.getContactId() == contactID).findFirst().orElseThrow(() -> new ContactNotFoundEXception("Contact not found"));
     }
 
     /**
