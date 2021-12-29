@@ -11,6 +11,6 @@ public interface AddressBookInterface {
     List<ContactData> getContactData();
     ContactData getContactDataById(Long contactID);
     ContactData createContactData(ContactDTO contactDTO);
-    ContactData updateContactData(int contactID, ContactDTO contactDTO);
-    void deleteContactData(int contactID);
+    ContactData updateContactData(Long contactID, ContactDTO contactDTO);
+    void deleteContactData(Long contactID);
 }
