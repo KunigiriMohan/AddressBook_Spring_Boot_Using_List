@@ -5,9 +5,9 @@ import javax.validation.constraints.Pattern;
 import lombok.ToString;
 
 /**
- * @Data : Using Lombok to auto Generate Getters and Setters
- * @Pattern : Validating Variable using Regex
- * @NotNull : Show error message when variable is not Defined
+ * @ToString : To Generate To String method Using Lombok
+ * @NotNull: To Show Error message when we did not enter any details
+ * @Pattern : Setting RegexPattern for Varaibles
  */
 public @ToString class  ContactDTO {
 
