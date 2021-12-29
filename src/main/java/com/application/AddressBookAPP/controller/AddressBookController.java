@@ -80,7 +80,7 @@ public class AddressBookController {
      * @return : ResponseEntity of Updated Contact
      */
     @PutMapping("/update/{contactID}")
-    public ResponseEntity<ResponseDTO> updateContact(@Valid @RequestBody ContactDTO contactDTO,@PathVariable("contactID") int contactID){
+    public ResponseEntity<ResponseDTO> updateContact(@Valid @RequestBody ContactDTO contactDTO,@PathVariable("contactID") Long contactID){
         ContactData contactData = addressBookInterface.updateContactData(contactID,contactDTO);
         ResponseDTO responseDTO = new ResponseDTO("Update Call Success : ", contactData);
         return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
@@ -92,7 +92,7 @@ public class AddressBookController {
      * @return :message showing delete ID
      */
     @DeleteMapping("/delete/{contactID}")
-    public ResponseEntity<ResponseDTO> deleteContactByID(@PathVariable("contactID") int contactID){
+    public ResponseEntity<ResponseDTO> deleteContactByID(@PathVariable("contactID") Long contactID){
         addressBookInterface.deleteContactData(contactID);
         ResponseDTO responseDTO = new ResponseDTO("Deleted Successfull : ", contactID);
         return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
