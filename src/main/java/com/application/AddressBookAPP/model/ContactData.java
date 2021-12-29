@@ -1,15 +1,33 @@
 package com.application.AddressBookAPP.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import com.application.AddressBookAPP.dto.ContactDTO;
-
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * @Data : To Generate Getters and Setters
+ * @Entity : To Create Entity of Table
+ * @Table : Setting Table name
+ * @Id : Generating Id
+ * @GeneratedValue : Auto Generating Id Value
+ * @Column : Setting Column of the table
  */
-
-public @Data class ContactData {
-    
-    private int contactId;
+@Data
+@NoArgsConstructor
+@Entity
+@Table(name = "contact_list")
+public class ContactData {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "contactId")
+    private Long contactId;
+    @Column(name = "name")
     private String name;
     private String address;
     private String city;
@@ -17,15 +35,21 @@ public @Data class ContactData {
     private String pinCode;
     private String mobileNo;
     private String email;
-    public ContactData(){}
+    
     
     /**
-     * Defining Constructer
-     * @param iD
+     * Creating Custom Constructer 
+     * @param: contactDTO
+     */
+    public ContactData(ContactDTO contactDTO){
+        this.updateContactDate( contactDTO);
+    }
+    
+    /**
+     *method to define Variables
      * @param contactDTO
      */
-    public ContactData(int contactId, ContactDTO contactDTO) {
-        this.contactId= contactId;
+    public void updateContactDate( ContactDTO contactDTO) {
         this.name=contactDTO.name;
         this.address=contactDTO.address;
         this.city=contactDTO.city;
