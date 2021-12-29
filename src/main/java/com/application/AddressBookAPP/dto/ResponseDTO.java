@@ -1,21 +1,17 @@
 package com.application.AddressBookAPP.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 /**
- * @Data : Using Lombok to auto generate Getters and Setters
+ * @Data : Using Lombok to auto generate Getters and Setters@
+ * @NoArgsConstructer: To Generate No Argument Construcer
+ * @AllArgsConstructer : To Generate All Argument Constructer
  */
-public @Data class ResponseDTO {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public  class ResponseDTO {
     private String message;
     private Object contactDTO;
-    
-    /**
-     * Defining Constructer 
-     * @param message
-     * @param contactDTO
-     */
-    public ResponseDTO(String message, Object contactDTO) {
-        this.message = message;
-        this.contactDTO = contactDTO;
-    }
-
 }
