@@ -1,11 +1,9 @@
 package com.application.AddressBookAPP.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import com.application.AddressBookAPP.dto.ContactDTO;
 import com.application.AddressBookAPP.model.ContactData;
 import com.application.AddressBookAPP.repository.AddressBookRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.application.AddressBookAPP.exception.ContactNotFoundEXception;
@@ -17,7 +15,6 @@ import com.application.AddressBookAPP.exception.ContactNotFoundEXception;
 @Service
 public class AddressService implements AddressBookInterface{
 
-    List<ContactData> contactDatas = new ArrayList<>();
     @Autowired
     AddressBookRepository addressBookRepository;
     /**
@@ -26,7 +23,7 @@ public class AddressService implements AddressBookInterface{
      */
     @Override
     public List<ContactData> getContactData() {
-        return contactDatas;
+        return addressBookRepository.findAll();
     }
 
     /**
@@ -36,7 +33,7 @@ public class AddressService implements AddressBookInterface{
      */
     @Override
     public ContactData getContactDataById(Long contactID) {
-        return contactDatas.stream().filter(empData -> empData.getContactId() == contactID).findFirst().orElseThrow(() -> new ContactNotFoundEXception("Contact not found"));
+        return addressBookRepository.findById(contactID).orElseThrow(() -> new ContactNotFoundEXception("Contact not found"));
     }
 
     /**
@@ -47,7 +44,6 @@ public class AddressService implements AddressBookInterface{
     @Override
     public ContactData createContactData(ContactDTO contactDTO) {
         ContactData contactData = new ContactData(contactDTO);
-        contactDatas.add(contactData);
         return addressBookRepository.save(contactData);
     }
 
@@ -57,10 +53,10 @@ public class AddressService implements AddressBookInterface{
      * @return : Updated Contact Data
      */
     @Override
-    public ContactData updateContactData(int contactID,ContactDTO contactDTO) {
-        ContactData contactData = new ContactData(contactDTO);
-        contactDatas.set(contactID,contactData);
-        return contactData;
+    public ContactData updateContactData(Long contactID,ContactDTO contactDTO) {
+        ContactData contactData = this.getContactDataById(contactID);
+        contactData.updateContactDate(contactDTO);
+        return addressBookRepository.save(contactData);
     }
 
     /**
@@ -68,7 +64,7 @@ public class AddressService implements AddressBookInterface{
      * @param : contactID
      */
     @Override
-    public void deleteContactData(int contactID) {
-        contactDatas.remove(contactID);
+    public void deleteContactData(Long contactID) {
+        addressBookRepository.deleteById(contactID);
     }
 }
