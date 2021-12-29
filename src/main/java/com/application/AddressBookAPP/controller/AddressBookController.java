@@ -55,7 +55,7 @@ public class AddressBookController {
      * @return ResponseEntity of Contact Details of given ID
      */
     @GetMapping("/get/{contactID}")
-    public ResponseEntity<ResponseDTO> getContactByID(@PathVariable("contactID") int contactID){
+    public ResponseEntity<ResponseDTO> getContactByID(@PathVariable("contactID") Long contactID){
         ContactData contactData = addressBookInterface.getContactDataById(contactID);
         ResponseDTO responseDTO = new ResponseDTO("Get Call Success : ", contactData);
         return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
